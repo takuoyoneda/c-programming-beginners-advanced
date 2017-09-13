@@ -122,8 +122,16 @@ void test4()
     FILE *f;
     
     f=fopen("test.txt", "w");
-    
     fprintf(f, "This is a c programming tutorial");
     fclose(f);
-    printf("Success \n\n");
+    
+    char data[255];
+    f=fopen("test.txt", "r");
+    while(fscanf(f, "%s", data) !=EOF)
+    {
+        printf("%s ",data);
+    }
+    fclose(f);
+    
+    printf("\n\nSuccess \n\n");
 }
