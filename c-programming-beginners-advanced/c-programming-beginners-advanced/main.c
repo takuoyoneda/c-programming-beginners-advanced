@@ -15,29 +15,21 @@
  free()     frees the dynamically allocated memory.
 */
 
-/*
- char ch[4]={'a','b','c','\n'}; // char array
- char ch[4]="abc"; // string literal
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
-
-#define LENGTH 5
-#define BREADTH 10
-
 
 void changeValue(int *p);
 void test1();
 void test2();
 void test3();
+void test4();
 
 int main()
 {
 //    test1();
 //    test2();
-    test3();
+//    test3();
+    test4();
 }
 
 
@@ -115,8 +107,23 @@ void test3()
 {
 //    char ch[4]={'a','b','c','\n'}; // char array
     char ch[4]="abc"; // string literal
-    printf("char: %s \n",ch);
+    printf("char: %s \n\n",ch);
     
+    char name[50];
+    printf("Enter your name: \n");
+    gets(name);
+    printf("\nNow we will call puts: ");
+    puts(name);
     
+}
+
+void test4()
+{
+    FILE *f;
     
+    f=fopen("test.txt", "w");
+    
+    fprintf(f, "This is a c programming tutorial");
+    fclose(f);
+    printf("Success \n\n");
 }
