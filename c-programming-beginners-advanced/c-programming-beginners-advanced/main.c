@@ -6,7 +6,23 @@
 //  Copyright © 2017 shakeweb. All rights reserved.
 //
 
+/*
+ Dynamic memory allocation in C
+ 
+ malloc()   allocates single block of requested memory.
+ calloc()   allocates multiple block of requested memory.
+ realloc()  reallocates the memory occupied by malloc() or calloc() functions.
+ free()     frees the dynamically allocated memory.
+*/
+
+/*
+ char ch[4]={'a','b','c','\n'}; // char array
+ char ch[4]="abc"; // string literal
+*/
+
+
 #include <stdio.h>
+#include <stdlib.h>
 
 #define LENGTH 5
 #define BREADTH 10
@@ -15,11 +31,13 @@
 void changeValue(int *p);
 void test1();
 void test2();
+void test3();
 
 int main()
 {
 //    test1();
-    test2();
+//    test2();
+    test3();
 }
 
 
@@ -63,7 +81,42 @@ void changeValue(int *p)
 
 void test2()
 {
+    int n,i,*ptr,sum=0;
     
+    printf("Enter size of list of elements: ");
+    scanf("%d", &n);
+    
+    ptr=(int*)malloc(n*sizeof(int));
+    printf("sizeof(int): %d \n", (unsigned int)sizeof(int)); // 4
+    printf("n*sizeof(int): %lu \n", (unsigned long)n*sizeof(int));
+    printf("malloc(n*sizeof(int): %lu \n", (unsigned long)malloc(n*sizeof(int)));
+    printf("(int*)malloc(n*sizeof(int): %lu \n\n", (unsigned long)(int*)malloc(n*sizeof(int)));
+    
+    if(ptr==NULL)
+    {
+        printf("Sorry! no memory");
+        exit(0);
+    }
+    
+    printf("Enter elements: \n");
+    for (i=0;i<n;++i)
+    {
+        scanf("%d", ptr+i);
+        printf("ptr+i: %d \n", (unsigned int)ptr+i); // address
+        printf("*(ptr+i): %d \n", (unsigned int)*(ptr+i)); // value
+        sum+=*(ptr+i);
+    }
+    
+    printf("Sum=%d \n\n", sum);
+    free(ptr);
 }
 
-
+void test3()
+{
+//    char ch[4]={'a','b','c','\n'}; // char array
+    char ch[4]="abc"; // string literal
+    printf("char: %s \n",ch);
+    
+    
+    
+}
